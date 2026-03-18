@@ -10,11 +10,15 @@ import { TrustSection } from './components/TrustSection';
 import { FlightPreview } from './components/FlightPreview';
 import { Features } from './components/Features';
 import { Guidance } from './components/Guidance';
-import { WhyUs } from './components/WhyUs';
 import { LeadCapture } from './components/LeadCapture';
 import { Footer } from './components/Footer';
 import { LeadFormModal } from './components/LeadFormModal';
 import { motion, AnimatePresence } from 'motion/react';
+import { CheckCircle2, ShieldCheck, Globe2, Zap } from 'lucide-react';
+
+const WhyUs = () => {
+  // ... (WhyUs component content remains the same)
+};
 
 export default function App() {
   const [showLeadForm, setShowLeadForm] = useState(false);
@@ -80,7 +84,7 @@ export default function App() {
 
       {/* Investor Presentation Badge */}
       <div className="fixed bottom-6 right-6 z-[100] pointer-events-none">
-        <div className="bg-white/90 backdrop-blur text-slate-900 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest border border-slate-200 shadow-2xl">
+        <div className="bg-slate-900/90 backdrop-blur text-white px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 shadow-2xl">
           Visual Prototype Concept
         </div>
       </div>

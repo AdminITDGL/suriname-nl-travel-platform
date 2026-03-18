@@ -62,71 +62,53 @@ export const Hero = ({ onSearchComplete }: HeroProps) => {
   };
 
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
-      {/* Background visual - Premium Animated Gradients */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-accent-500/10 rounded-full blur-[150px] animate-pulse delay-700" />
-      </div>
-      
+    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+      {/* Background visual */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(45%_40%_at_50%_50%,rgba(14,165,233,0.08)_0%,rgba(255,255,255,0)_100%)]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-20 opacity-[0.03] pointer-events-none">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="grid-premium" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" strokeWidth="1" />
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#grid-premium)" />
+          <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative">
-        <div className="text-center max-w-4xl mx-auto mb-16">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-brand-600 text-[10px] font-black uppercase tracking-[0.2em] mb-8"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-600"></span>
-            </span>
-            Premium Route Intelligence
-          </motion.div>
-          
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-6xl lg:text-8xl font-black tracking-tighter text-slate-900 mb-8 leading-[0.9]"
+            className="text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-6"
           >
-            The Bridge Between <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-500 via-brand-600 to-accent-600">Continents.</span>
+            Travel Between <span className="text-brand-600">Suriname</span> & <span className="text-brand-600">The Netherlands</span>
           </motion.h1>
-          
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto font-medium"
+            className="text-lg text-slate-600 leading-relaxed"
           >
-            Experience the most sophisticated flight comparison engine for the Amsterdam ⇄ Paramaribo corridor. Data-driven insights for the modern traveler.
+            The smartest way to compare KLM and Surinam Airways. Find the best deals, track prices, and plan your journey with local expertise.
           </motion.p>
         </div>
 
-        {/* Search Bar UI - Glassmorphism */}
+        {/* Search Bar UI */}
         <motion.form 
           onSubmit={handleSearch}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-white/70 backdrop-blur-2xl rounded-[2.5rem] p-3 lg:p-5 max-w-6xl mx-auto relative shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)] border border-white/40"
+          className="bg-white rounded-3xl shadow-2xl shadow-brand-900/10 border border-slate-100 p-2 lg:p-4 max-w-5xl mx-auto relative"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
             {/* From */}
-            <div className={`flex flex-col px-6 py-4 rounded-3xl transition-all relative ${errors.from ? 'bg-red-50 ring-1 ring-red-200' : 'hover:bg-slate-50'}`}>
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">Departure</label>
-              <div className="flex items-center gap-3">
-                <Plane className={`w-5 h-5 ${errors.from ? 'text-red-500' : 'text-brand-500'}`} />
+            <div className={`flex flex-col px-4 py-3 rounded-2xl transition-all relative ${errors.from ? 'bg-red-50 ring-1 ring-red-200' : 'hover:bg-slate-50'}`}>
+              <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">From</label>
+              <div className="flex items-center gap-2">
+                <Plane className={`w-4 h-4 ${errors.from ? 'text-red-400' : 'text-brand-500'}`} />
                 <input 
                   type="text" 
                   value={from}
@@ -134,33 +116,33 @@ export const Hero = ({ onSearchComplete }: HeroProps) => {
                     setFrom(e.target.value);
                     if (errors.from) setErrors(prev => ({ ...prev, from: '' }));
                   }}
-                  className="bg-transparent border-none p-0 focus:ring-0 font-bold text-lg text-slate-900 w-full placeholder:text-slate-300"
-                  placeholder="From where?"
+                  className="bg-transparent border-none p-0 focus:ring-0 font-medium text-slate-900 w-full placeholder:text-slate-300"
+                  placeholder="Departure city"
                 />
               </div>
               {errors.from && (
-                <div className="absolute -bottom-6 left-6 flex items-center gap-1 text-[10px] font-bold text-red-500 uppercase tracking-tight">
+                <div className="absolute -bottom-6 left-4 flex items-center gap-1 text-[10px] font-bold text-red-500 uppercase tracking-tight">
                   <AlertCircle className="w-3 h-3" /> {errors.from}
                 </div>
               )}
             </div>
 
             {/* Swap Icon */}
-            <div className="hidden lg:flex items-center justify-center -mx-6 z-10">
+            <div className="hidden lg:flex items-center justify-center -mx-4 z-10">
               <button 
                 type="button"
                 onClick={swapLocations}
-                className="bg-white border border-slate-200 shadow-xl rounded-full p-3 text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-all active:scale-90 group"
+                className="bg-white border border-slate-100 shadow-sm rounded-full p-2 text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-all active:scale-90"
               >
-                <ArrowRightLeft className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
+                <ArrowRightLeft className="w-4 h-4" />
               </button>
             </div>
 
             {/* To */}
-            <div className={`flex flex-col px-6 py-4 rounded-3xl transition-all relative ${errors.to ? 'bg-red-50 ring-1 ring-red-200' : 'hover:bg-slate-50'}`}>
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">Destination</label>
-              <div className="flex items-center gap-3">
-                <Plane className={`w-5 h-5 rotate-90 ${errors.to ? 'text-red-500' : 'text-brand-500'}`} />
+            <div className={`flex flex-col px-4 py-3 rounded-2xl transition-all relative ${errors.to ? 'bg-red-50 ring-1 ring-red-200' : 'hover:bg-slate-50'}`}>
+              <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">To</label>
+              <div className="flex items-center gap-2">
+                <Plane className={`w-4 h-4 rotate-90 ${errors.to ? 'text-red-400' : 'text-brand-500'}`} />
                 <input 
                   type="text" 
                   value={to}
@@ -168,23 +150,23 @@ export const Hero = ({ onSearchComplete }: HeroProps) => {
                     setTo(e.target.value);
                     if (errors.to) setErrors(prev => ({ ...prev, to: '' }));
                   }}
-                  className="bg-transparent border-none p-0 focus:ring-0 font-bold text-lg text-slate-900 w-full placeholder:text-slate-300"
-                  placeholder="To where?"
+                  className="bg-transparent border-none p-0 focus:ring-0 font-medium text-slate-900 w-full placeholder:text-slate-300"
+                  placeholder="Destination city"
                 />
               </div>
               {errors.to && (
-                <div className="absolute -bottom-6 left-6 flex items-center gap-1 text-[10px] font-bold text-red-500 uppercase tracking-tight">
+                <div className="absolute -bottom-6 left-4 flex items-center gap-1 text-[10px] font-bold text-red-500 uppercase tracking-tight">
                   <AlertCircle className="w-3 h-3" /> {errors.to}
                 </div>
               )}
             </div>
 
             {/* Dates */}
-            <div className="flex flex-col px-6 py-4 rounded-3xl hover:bg-slate-50 transition-colors cursor-pointer group">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">Travel Dates</label>
-              <div className="flex items-center gap-3">
-                <Calendar className="w-5 h-5 text-brand-500" />
-                <span className="font-bold text-lg text-slate-900">Oct 12 - Oct 26</span>
+            <div className="flex flex-col px-4 py-3 rounded-2xl hover:bg-slate-50 transition-colors cursor-pointer group">
+              <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Dates</label>
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-brand-500" />
+                <span className="font-medium text-slate-900">Oct 12 - Oct 26</span>
               </div>
             </div>
 
@@ -192,12 +174,12 @@ export const Hero = ({ onSearchComplete }: HeroProps) => {
             <div className="relative" ref={menuRef}>
               <div 
                 onClick={() => setShowPassengerMenu(!showPassengerMenu)}
-                className="flex flex-col px-6 py-4 rounded-3xl hover:bg-slate-50 transition-colors cursor-pointer group"
+                className="flex flex-col px-4 py-3 rounded-2xl hover:bg-slate-50 transition-colors cursor-pointer group"
               >
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">Travelers</label>
-                <div className="flex items-center gap-3">
-                  <Users className="w-5 h-5 text-brand-500" />
-                  <span className="font-bold text-lg text-slate-900">{totalPassengers} Passenger{totalPassengers > 1 ? 's' : ''}</span>
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Passengers</label>
+                <div className="flex items-center gap-2">
+                  <Users className="w-4 h-4 text-brand-500" />
+                  <span className="font-medium text-slate-900">{totalPassengers} Passenger{totalPassengers > 1 ? 's' : ''}</span>
                 </div>
               </div>
 
@@ -207,27 +189,27 @@ export const Hero = ({ onSearchComplete }: HeroProps) => {
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute top-full left-0 mt-4 w-72 bg-white border border-slate-200 rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] p-6 z-50 backdrop-blur-xl"
+                    className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-slate-100 p-4 z-50"
                   >
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm font-black text-slate-900">Adults</p>
-                          <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Age 12+</p>
+                          <p className="text-sm font-bold text-slate-900">Adults</p>
+                          <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Age 12+</p>
                         </div>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
                           <button 
                             type="button"
                             onClick={() => handlePassengerChange('adults', -1)}
-                            className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-500 hover:text-brand-500 transition-all"
+                            className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-600 hover:text-brand-600 transition-colors"
                           >
                             <Minus className="w-4 h-4" />
                           </button>
-                          <span className="w-4 text-center font-black text-slate-900">{passengers.adults}</span>
+                          <span className="w-4 text-center font-bold text-slate-900">{passengers.adults}</span>
                           <button 
                             type="button"
                             onClick={() => handlePassengerChange('adults', 1)}
-                            className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-500 hover:text-brand-500 transition-all"
+                            className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-600 hover:text-brand-600 transition-colors"
                           >
                             <Plus className="w-4 h-4" />
                           </button>
@@ -236,22 +218,22 @@ export const Hero = ({ onSearchComplete }: HeroProps) => {
 
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm font-black text-slate-900">Children</p>
-                          <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Age 2-11</p>
+                          <p className="text-sm font-bold text-slate-900">Children</p>
+                          <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Age 2-11</p>
                         </div>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
                           <button 
                             type="button"
                             onClick={() => handlePassengerChange('children', -1)}
-                            className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-500 hover:text-brand-500 transition-all"
+                            className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-600 hover:text-brand-600 transition-colors"
                           >
                             <Minus className="w-4 h-4" />
                           </button>
-                          <span className="w-4 text-center font-black text-slate-900">{passengers.children}</span>
+                          <span className="w-4 text-center font-bold text-slate-900">{passengers.children}</span>
                           <button 
                             type="button"
                             onClick={() => handlePassengerChange('children', 1)}
-                            className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-500 hover:text-brand-500 transition-all"
+                            className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-600 hover:text-brand-600 transition-colors"
                           >
                             <Plus className="w-4 h-4" />
                           </button>
@@ -260,22 +242,22 @@ export const Hero = ({ onSearchComplete }: HeroProps) => {
 
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm font-black text-slate-900">Infants</p>
-                          <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Under 2</p>
+                          <p className="text-sm font-bold text-slate-900">Infants</p>
+                          <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Under 2</p>
                         </div>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
                           <button 
                             type="button"
                             onClick={() => handlePassengerChange('infants', -1)}
-                            className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-500 hover:text-brand-500 transition-all"
+                            className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-600 hover:text-brand-600 transition-colors"
                           >
                             <Minus className="w-4 h-4" />
                           </button>
-                          <span className="w-4 text-center font-black text-slate-900">{passengers.infants}</span>
+                          <span className="w-4 text-center font-bold text-slate-900">{passengers.infants}</span>
                           <button 
                             type="button"
                             onClick={() => handlePassengerChange('infants', 1)}
-                            className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-500 hover:text-brand-500 transition-all"
+                            className="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-600 hover:text-brand-600 transition-colors"
                           >
                             <Plus className="w-4 h-4" />
                           </button>
@@ -294,7 +276,7 @@ export const Hero = ({ onSearchComplete }: HeroProps) => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 disabled={isSearching}
-                className={`w-full h-full bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white font-black rounded-2xl py-5 lg:py-0 transition-all shadow-[0_20px_40px_-10px_rgba(14,165,233,0.3)] flex items-center justify-center gap-3 overflow-hidden relative ${isSearching ? 'opacity-80 cursor-not-allowed' : ''}`}
+                className={`w-full h-full bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-2xl py-4 lg:py-0 transition-all shadow-lg shadow-brand-600/20 flex items-center justify-center gap-2 overflow-hidden relative ${isSearching ? 'opacity-80 cursor-not-allowed' : ''}`}
               >
                 <AnimatePresence mode="wait">
                   {isSearching ? (
@@ -303,10 +285,10 @@ export const Hero = ({ onSearchComplete }: HeroProps) => {
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
-                      className="flex items-center gap-3"
+                      className="flex items-center gap-2"
                     >
-                      <Loader2 className="w-6 h-6 animate-spin" />
-                      <span className="uppercase tracking-widest text-sm">Analyzing...</span>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Searching...</span>
                     </motion.div>
                   ) : (
                     <motion.div 
@@ -314,10 +296,10 @@ export const Hero = ({ onSearchComplete }: HeroProps) => {
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
-                      className="flex items-center gap-3"
+                      className="flex items-center gap-2"
                     >
-                      <Search className="w-6 h-6" />
-                      <span className="uppercase tracking-widest text-sm">Explore Deals</span>
+                      <Search className="w-5 h-5" />
+                      <span>Search Flights</span>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -327,18 +309,18 @@ export const Hero = ({ onSearchComplete }: HeroProps) => {
         </motion.form>
 
         {/* Quick Stats/Trust Badges */}
-        <div className="mt-16 flex flex-wrap justify-center gap-10 text-slate-400 text-[10px] font-black uppercase tracking-[0.3em]">
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
-            Live GDS Sync
+        <div className="mt-12 flex flex-wrap justify-center gap-8 text-slate-400 text-sm font-medium">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-500" />
+            Real-time Price Tracking
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse delay-300" />
-            Direct Carrier API
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-500" />
+            Direct Airline Redirects
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse delay-700" />
-            Price Protection
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-500" />
+            No Hidden Booking Fees
           </div>
         </div>
       </div>
