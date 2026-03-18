@@ -2,18 +2,36 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --color-brand-50: #f0f7ff;
-  --color-brand-100: #e0effe;
+  --color-brand-50: #f0f9ff;
+  --color-brand-100: #e0f2fe;
   --color-brand-500: #0ea5e9;
   --color-brand-600: #0284c7;
   --color-brand-700: #0369a1;
   --color-brand-900: #0c4a6e;
+  
+  /* Vibrant Accents */
+  --color-accent-500: #f59e0b; /* Amber/Gold */
+  --color-accent-600: #d97706;
+  
+  /* Premium Slate */
+  --color-slate-950: #020617;
 }
 
 @layer base {
   body {
-    @apply font-sans text-slate-900 bg-white;
+    @apply font-sans text-slate-900 bg-white antialiased;
   }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Smooth scroll for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom glassmorphism utility */
+.glass {
+  @apply bg-white/70 backdrop-blur-xl border border-white/20;
+}
+

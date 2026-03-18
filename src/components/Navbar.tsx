@@ -16,44 +16,51 @@ export const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/80 backdrop-blur-lg border-b border-slate-100 py-4 shadow-sm' : 'bg-transparent py-6'
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        isScrolled ? 'bg-white/80 backdrop-blur-xl border-b border-slate-100 py-4 shadow-lg shadow-black/5' : 'bg-transparent py-8'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-2 group cursor-pointer">
-          <div className="bg-brand-600 p-1.5 rounded-lg group-hover:rotate-12 transition-transform">
+        <div className="flex items-center gap-3 group cursor-pointer">
+          <div className="bg-brand-600 p-2 rounded-xl group-hover:rotate-12 transition-transform shadow-lg shadow-brand-600/20">
             <Plane className="w-6 h-6 text-white" />
           </div>
-          <span className="text-2xl font-bold text-slate-900 tracking-tight">Suri<span className="text-brand-600">Fly</span></span>
+          <span className={`text-2xl font-black tracking-tighter transition-colors text-slate-900`}>
+            Suri<span className="text-brand-500">Fly</span>
+          </span>
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-10">
-          <a href="#" className="text-sm font-semibold text-slate-600 hover:text-brand-600 transition-colors">Search</a>
-          <a href="#" className="text-sm font-semibold text-slate-600 hover:text-brand-600 transition-colors">Compare</a>
-          <a href="#" className="text-sm font-semibold text-slate-600 hover:text-brand-600 transition-colors">Travel Guides</a>
-          <a href="#" className="text-sm font-semibold text-slate-600 hover:text-brand-600 transition-colors">Insights</a>
+        <div className="hidden lg:flex items-center gap-12">
+          {['Search', 'Compare', 'Travel Guides', 'Insights'].map((item) => (
+            <a 
+              key={item}
+              href="#" 
+              className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:text-brand-500 text-slate-600`}
+            >
+              {item}
+            </a>
+          ))}
         </div>
 
         {/* Actions */}
-        <div className="hidden lg:flex items-center gap-4">
-          <button className="p-2 text-slate-400 hover:text-brand-600 transition-colors relative">
+        <div className="hidden lg:flex items-center gap-6">
+          <button className={`p-2 transition-colors relative text-slate-400 hover:text-brand-600`}>
             <Bell className="w-5 h-5" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
           </button>
-          <button className="bg-slate-900 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-brand-600 transition-all shadow-lg shadow-slate-900/10">
+          <button className={`px-8 py-3 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all shadow-xl bg-slate-950 text-white hover:bg-brand-600 shadow-slate-950/10`}>
             Sign In
           </button>
         </div>
 
         {/* Mobile Toggle */}
         <button 
-          className="lg:hidden p-2 text-slate-600"
+          className={`lg:hidden p-2 transition-colors text-slate-900`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
         </button>
       </div>
 
